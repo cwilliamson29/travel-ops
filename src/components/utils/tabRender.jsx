@@ -4,8 +4,9 @@ import classnames from 'classnames';
 
 export default function TabRender(props) {
 	return (
-		<NavItem className="fc">
+		<NavItem>
 			<NavLink
+				id="navLink"
 				className={classnames({ active: props.activeTab === props.num })}
 				onClick={() => {
 					props.toggle(props.num);

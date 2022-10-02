@@ -21,18 +21,27 @@ export default function Header() {
 
 	return (
 		<div>
-			<div className=" pb-1">
-				<Nav tabs>
-					{tabData.map((item, i) => (
-						<TabRender key={uniqid()} num={item.num} name={item.name} activeTab={activeTab} toggle={toggle} />
-					))}
-				</Nav>
+			<div className="topContainer">
+				<div className="title">
+					<h1>Travel Ops</h1>
+				</div>
 
-				<TabContent activeTab={activeTab}>
-					<TAPortal />
-					<Customer />
-				</TabContent>
+				<div className="headerContainer">
+					<div className="buttonBar">tools</div>
+					<div className="linksBar">
+						<Nav tabs>
+							{tabData.map((item, i) => (
+								<TabRender key={uniqid()} num={item.num} name={item.name} activeTab={activeTab} toggle={toggle} />
+							))}
+						</Nav>
+					</div>
+				</div>
 			</div>
+
+			<TabContent activeTab={activeTab}>
+				<TAPortal />
+				<Customer />
+			</TabContent>
 		</div>
 	);
 }

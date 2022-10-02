@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       {/*******ROUTES*********/}
-      <div className="container bg-light">
+      <div className="bg-light">
         <Routes>
           <Route path="/" element={<Header />} />
           <Route path="*" element={<Page404 />} />
