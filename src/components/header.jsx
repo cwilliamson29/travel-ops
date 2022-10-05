@@ -4,6 +4,7 @@ import { Container, Card, CardHeader, Row, CardBody, Col, Button, Nav, TabConten
 import TabRender from './utils/tabRender';
 import TAPortal from './taPortal';
 import Customer from './customer';
+import Marquee from 'react-fast-marquee';
 import uniqid from 'uniqid';
 
 export default function Header() {
@@ -27,7 +28,7 @@ export default function Header() {
 				</div>
 
 				<div className="headerContainer">
-					<div className="buttonBar">tools</div>
+					<div className="assistBar">Tools | Help | Report a Problem | Sign Out</div>
 					<div className="linksBar">
 						<Nav tabs>
 							{tabData.map((item, i) => (
@@ -37,6 +38,9 @@ export default function Header() {
 					</div>
 				</div>
 			</div>
+			<Marquee gradient={false} className="marquee2">
+				Making modification to a booking? Does it have Travel Protection on it? Before you let the customer go, its is your responsibility to collect the difference in the cost AT THE TIME the changes are made!
+			</Marquee>
 
 			<TabContent activeTab={activeTab}>
 				<TAPortal />
