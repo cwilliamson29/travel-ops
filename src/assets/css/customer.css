@@ -1,0 +1,52 @@
+/*********Customer Buttons***********/
+.customerButtons {
+	width: 100%;
+	background-color: #dcdcdc;
+	display: flex;
+	padding-bottom: 4px;
+	border-bottom: 2px groove lightgray;
+}
+.searchActive {
+	color: black;
+}
+.searchInActive {
+	color: grey;
+}
+.custLead {
+	margin-left: 23px;
+	font-size: 14px;
+	padding: 3px;
+}
+.custNew {
+	margin-left: 26px;
+	font-size: 14px;
+	padding: 3px;
+}
+.custBtn {
+	margin-left: 20px;
+	font-size: 14px;
+	border-radius: 6px;
+}
+/*********Customer Search***********/
+.customerSearchContainer {
+	min-width: 1280px;
+	width: 100%;
+	background-color: #dcdcdc;
+	display: flex;
+	justify-content: space-between;
+	padding-left: 25px;
+	padding-right: 45px;
+	padding-bottom: 4px;
+	border-bottom: 2px groove lightgray;
+}
+.searchSelect {
+	width: 350px;
+	font-size: 12px;
+}
+.searchInput {
+	display: flex;
+	flex-direction: column;
+	margin-left: 25px;
+	min-width: 100px;
+	width: 12%;
+}
