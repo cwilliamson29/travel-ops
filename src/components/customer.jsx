@@ -1,5 +1,6 @@
 import '../assets/css/customer.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import DataContext from '../data/dataContext';
 import { Row, Label, TabPane } from 'reactstrap';
 import { BsPersonLinesFill, BsPersonPlusFill } from 'react-icons/bs';
 import SearchButtons from './utils/customerTab/customerSearchButtons';
@@ -7,16 +8,13 @@ import CustomerSearch from './utils/customerTab/customerSearch';
 import AltSearch from './utils/customerTab/customerAltSearch';
 
 export default function Customer() {
-	const [search, setSearch] = useState(false);
-	const toggle = () => {
-		setSearch(!search);
-	};
+	const { togglenewCustBtn } = useContext(DataContext);
 	return (
 		<TabPane tabId="2" style={{ backgroundColor: '#dcdcdc' }}>
-			<SearchButtons search={search} />
+			<SearchButtons />
 			<CustomerSearch />
 			<AltSearch />
-			<button onClick={toggle}>change</button>
+			<button onClick={togglenewCustBtn}>change</button>
 		</TabPane>
 	);
 }

@@ -1,17 +1,14 @@
 import '../../../assets/css/customer.css';
-import { useState, useMemo } from 'react';
+import { useState, useContext } from 'react';
+import DataContext from '../../../data/dataContext';
 import { Collapse } from 'reactstrap';
 import { BsArrowDownSquareFill, BsArrowUpSquareFill } from 'react-icons/bs';
 import Select from 'react-select';
-import { SelectUSStates } from '../../../data/usStates';
-import countryList from 'react-select-country-list';
 
 export default function AltSearch() {
+	const { countryOptions, countrySel, stateSel, SelectUSStates, handleCountryChange, handleStateChange } = useContext(DataContext);
 	const [collapse, setCollapse] = useState(false);
-	const [selection, setSelection] = useState(null);
-	const [selection2, setSelection2] = useState(null);
 	const [isClearable, setIsClearable] = useState(true);
-	const countryOptions = useMemo(() => countryList().getData(), []);
 
 	const toggle = () => {
 		setCollapse(!collapse);
@@ -47,13 +44,6 @@ export default function AltSearch() {
 		}),
 	};
 
-	const handleChange = (e) => {
-		setSelection(e);
-	};
-	const handleChange2 = (e) => {
-		setSelection2(e);
-	};
-
 	return (
 		<div className="altSearchWrapper">
 			<div className="head" onClick={toggle}>
@@ -64,11 +54,11 @@ export default function AltSearch() {
 				<div className="altSearchContainer">
 					<div className="searchInputCont">
 						<label htmlFor="program">Country:</label>
-						<Select className="searchSelect basic-single" classNamePrefix="select" name="program" value={selection} onChange={handleChange} options={countryOptions} styles={customStyles} isClearable={isClearable} />
+						<Select className="searchSelect basic-single" classNamePrefix="select" name="program" value={countrySel} onChange={handleCountryChange} options={countryOptions} styles={customStyles} isClearable={isClearable} />
 					</div>
 					<div className="searchInputCont">
 						<label htmlFor="phone">State:</label>
-						<Select className="searchSelect basic-single" classNamePrefix="select" name="program" value={selection2} onChange={handleChange2} options={SelectUSStates} styles={customStyles} isClearable={isClearable} />
+						<Select className="searchSelect basic-single" classNamePrefix="select" name="program" value={stateSel} onChange={handleStateChange} options={SelectUSStates} styles={customStyles} isClearable={isClearable} />
 					</div>
 					<div className="searchInputCont">
 						<label htmlFor="email">Customer #:</label>

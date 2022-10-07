@@ -1,16 +1,13 @@
 import '../../../assets/css/customer.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import DataContext from '../../../data/dataContext';
 import Select from 'react-select';
 
 export default function CustomerSearch() {
-	const [selection, setSelection] = useState(null);
+	const { program, programSelection, handleProgramChange } = useContext(DataContext);
+
 	const [isClearable, setIsClearable] = useState(true);
 
-	const options = [
-		{ value: 'MYCRUISESITE.COM', label: 'MYCRUISESITE.COM' },
-		{ value: 'MYCRUISEPLANNER.COM', label: 'MYCRUISEPLANNER.COM' },
-		{ value: 'MYCRUISEVACATION.COM', label: 'MYCRUISEVACATION.COM' },
-	];
 	const customStyles = {
 		control: (provided, state) => ({
 			...provided,
@@ -40,16 +37,11 @@ export default function CustomerSearch() {
 		}),
 	};
 
-	const handleChange = (e) => {
-		setSelection(e);
-		console.log(e.value);
-	};
-
 	return (
 		<div className="customerSearchContainer">
 			<div className="searchInputCont">
 				<label htmlFor="program">Program:</label>
-				<Select className="searchSelect basic-single" classNamePrefix="select" name="program" value={selection} onChange={handleChange} options={options} styles={customStyles} isClearable={isClearable} />
+				<Select className="searchSelect basic-single" classNamePrefix="select" name="program" value={programSelection} onChange={handleProgramChange} options={program} styles={customStyles} isClearable={isClearable} />
 			</div>
 			<div className="searchInputCont">{/***spacer****/}</div>
 			<div className="searchInputCont">

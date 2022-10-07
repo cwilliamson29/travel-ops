@@ -1,8 +1,12 @@
 import '../../../assets/css/customer.css';
 import { BsPersonLinesFill, BsPersonPlusFill } from 'react-icons/bs';
+import { useContext } from 'react';
+import DataContext from '../../../data/dataContext';
 
-export default function SearchButtons({ search }) {
-	if (!search) {
+export default function SearchButtons() {
+	const { newCustBtn } = useContext(DataContext);
+
+	if (!newCustBtn) {
 		return (
 			<div className="customerButtons">
 				<div className="custLead searchInActive">
