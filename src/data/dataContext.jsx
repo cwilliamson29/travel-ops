@@ -9,7 +9,7 @@ const DataContext = createContext({});
 export const DataProvider = ({ children }) => {
 	const [newCustBtn, setnewCustBtn] = useState(false);
 	const togglenewCustBtn = () => {
-		setnewCustBtn(!newCustBtn);
+		setnewCustBtn(true);
 	};
 	const [programSelection, setProgramSelection] = useState(null);
 	const program = [
@@ -31,8 +31,18 @@ export const DataProvider = ({ children }) => {
 	const handleStateChange = (value) => {
 		setStateSel(value);
 	};
+	const searchReset = () => {
+		setnewCustBtn(false);
+		setProgramSelection(null);
+		setCountrySel(null);
+		setStateSel(null);
+	};
 
-	return <DataContext.Provider value={{ newCustBtn, togglenewCustBtn, handleProgramChange, programSelection, program, countryOptions, countrySel, stateSel, SelectUSStates, handleCountryChange, handleStateChange }}>{children}</DataContext.Provider>;
+	return (
+		<DataContext.Provider value={{ newCustBtn, togglenewCustBtn, handleProgramChange, programSelection, program, countryOptions, countrySel, stateSel, SelectUSStates, handleCountryChange, handleStateChange, searchReset }}>
+			{children}
+		</DataContext.Provider>
+	);
 };
 
 export default DataContext;
