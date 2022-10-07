@@ -37,9 +37,10 @@
 	padding: 10px !important;
 	padding-top: 1px !important;
 	padding-bottom: 3px !important;
-	background-color: #7393b3;
+	background-color: #9e9ab5;
 	margin-bottom: -1px;
-	border: none;
+	border: 1px solid black;
+	border-bottom: none;
 	font-weight: bolder;
 	color: white;
 	font-family: verdana, arial, helvetica;

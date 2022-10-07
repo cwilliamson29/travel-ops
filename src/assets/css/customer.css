@@ -37,16 +37,48 @@
 	padding-left: 25px;
 	padding-right: 45px;
 	padding-bottom: 4px;
-	border-bottom: 2px groove lightgray;
 }
 .searchSelect {
 	width: 350px;
 	font-size: 12px;
 }
-.searchInput {
+.searchInputCont {
 	display: flex;
 	flex-direction: column;
 	margin-left: 25px;
-	min-width: 100px;
-	width: 12%;
+	width: 150px;
+	font-size: 14px;
+}
+.searchInput {
+	font-size: 14px;
+	border-radius: 5px;
+	border: 1px solid grey;
+}
+/*********Customer ALT Search***********/
+.altSearchWrapper {
+	background-color: #dcdcdc;
+	border: 2px groove lightgray;
+	padding: 15px 10px 10px;
+	margin-top: 10px;
+	margin-left: 1%;
+	margin-right: 1%;
+	min-width: 1215px;
+	width: 98%;
+}
+.altSearchWrapper .head {
+	position: absolute;
+	margin-top: -27px;
+	margin-left: 10px;
+	background: #dcdcdc;
+	padding: 2px 8px;
+	font-size: 12px;
+}
+.altSearchArrow {
+	margin-right: 7px;
+	font-size: 15px;
+}
+.altSearchContainer {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }

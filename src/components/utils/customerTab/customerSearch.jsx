@@ -16,14 +16,14 @@ export default function CustomerSearch() {
 			...provided,
 			background: '#fff',
 			borderColor: '#9e9e9e',
-			minHeight: '30px',
-			height: '30px',
+			minHeight: '25px',
+			height: '25px',
 			boxShadow: state.isFocused ? null : null,
 		}),
 
 		valueContainer: (provided, state) => ({
 			...provided,
-			height: '30px',
+			height: '25px',
 			padding: '0 6px',
 		}),
 
@@ -36,7 +36,7 @@ export default function CustomerSearch() {
 		}),
 		indicatorsContainer: (provided, state) => ({
 			...provided,
-			height: '30px',
+			height: '25px',
 		}),
 	};
 
@@ -47,25 +47,26 @@ export default function CustomerSearch() {
 
 	return (
 		<div className="customerSearchContainer">
-			<div>
+			<div className="searchInputCont">
 				<label htmlFor="program">Program:</label>
 				<Select className="searchSelect basic-single" classNamePrefix="select" name="program" value={selection} onChange={handleChange} options={options} styles={customStyles} isClearable={isClearable} />
 			</div>
-			<div className="searchInput">
+			<div className="searchInputCont">{/***spacer****/}</div>
+			<div className="searchInputCont">
 				<label htmlFor="phone">Phone Number:</label>
-				<input type="phone" />
+				<input type="phone" name="phone" className="searchInput" />
 			</div>
-			<div className="searchInput">
+			<div className="searchInputCont">
 				<label htmlFor="email">Email Address:</label>
-				<input type="text" />
+				<input type="text" name="email" className="searchInput" />
 			</div>
-			<div className="searchInput">
-				<label htmlFor="email">Last Name:</label>
-				<input type="text" />
+			<div className="searchInputCont">
+				<label htmlFor="lname">Last Name:</label>
+				<input type="text" name="lname" className="searchInput" />
 			</div>
-			<div className="searchInput">
-				<label htmlFor="email">First Name:</label>
-				<input type="text" />
+			<div className="searchInputCont">
+				<label htmlFor="fname">First Name:</label>
+				<input type="text" name="fname" className="searchInput" />
 			</div>
 		</div>
 	);
