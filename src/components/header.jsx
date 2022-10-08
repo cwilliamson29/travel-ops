@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../assets/css/header.css';
-import { Container, Card, CardHeader, Row, CardBody, Col, Button, Nav, TabContent } from 'reactstrap';
+import { Nav, TabContent } from 'reactstrap';
+import DataContext from '../data/dataContext';
 import TabRender from './utils/tabRender';
 import TAPortal from './taPortal';
 import Customer from './customer';
@@ -8,17 +9,14 @@ import Marquee from 'react-fast-marquee';
 import uniqid from 'uniqid';
 
 export default function Header() {
+	const { activeTab, tabToggle } = useContext(DataContext);
+
 	const tabData = [
 		{ name: 'TA Portal', num: '1' },
 		{ name: 'Customer', num: '2' },
 		{ name: 'Booking', num: '3' },
 		{ name: 'Cruises', num: '4' },
 	];
-	const [activeTab, setActiveTab] = useState('1');
-
-	const toggle = (tab) => {
-		if (activeTab !== tab) setActiveTab(tab);
-	};
 
 	return (
 		<div>
@@ -32,7 +30,7 @@ export default function Header() {
 					<div className="linksBar">
 						<Nav tabs>
 							{tabData.map((item, i) => (
-								<TabRender key={uniqid()} num={item.num} name={item.name} activeTab={activeTab} toggle={toggle} />
+								<TabRender key={uniqid()} num={item.num} name={item.name} activeTab={activeTab} toggle={tabToggle} />
 							))}
 						</Nav>
 					</div>

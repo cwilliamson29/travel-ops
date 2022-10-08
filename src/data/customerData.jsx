@@ -11,6 +11,7 @@ export const customerData = [
 		gender: 'male',
 		ageClass: 'adult',
 		email: 'asdf@asdf.com',
+		address: [{ primary: { line1: '101 Foxtrot Lane', line2: '', city: 'Atlanta', state: 'GA', zip: '30301' } }],
 		citizenship: 'United States',
 	},
 	{
@@ -25,6 +26,7 @@ export const customerData = [
 		gender: 'male',
 		ageClass: 'adult',
 		email: 'asdf@asdf.com',
+		address: [{ primary: { line1: '101 Foxtrot Lane', line2: '', city: 'Atlanta', state: 'GA', zip: '30301' } }],
 		citizenship: 'United States',
 	},
 	{
@@ -39,6 +41,7 @@ export const customerData = [
 		gender: 'male',
 		ageClass: 'adult',
 		email: 'asdf@asdf.com',
+		address: [{ primary: { line1: '101 Foxtrot Lane', line2: '', city: 'Atlanta', state: 'GA', zip: '30301' } }],
 		citizenship: 'United States',
 	},
 ];

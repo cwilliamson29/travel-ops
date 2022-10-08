@@ -6,7 +6,7 @@ import { BsArrowDownSquareFill, BsArrowUpSquareFill } from 'react-icons/bs';
 import Select from 'react-select';
 
 export default function AltSearch() {
-	const { countryOptions, countrySel, stateSel, SelectUSStates, handleCountryChange, handleStateChange } = useContext(DataContext);
+	const { countryOptions, countrySel, stateSel, SelectUSStates, handleCountryChange, handleStateChange, ccNumber, setCcNumber, custNumber, setCustNumber } = useContext(DataContext);
 	const [collapse, setCollapse] = useState(false);
 	const [isClearable, setIsClearable] = useState(true);
 
@@ -62,11 +62,11 @@ export default function AltSearch() {
 					</div>
 					<div className="searchInputCont">
 						<label htmlFor="email">Customer #:</label>
-						<input type="text" name="email" className="searchInput" />
+						<input type="text" name="email" className="searchInput" value={custNumber} onChange={(e) => setCustNumber(e.target.value)} />
 					</div>
 					<div className="searchInputCont">
 						<label htmlFor="lname">Credit Card#:</label>
-						<input type="text" name="lname" className="searchInput" />
+						<input type="text" name="lname" className="searchInput" value={ccNumber} onChange={(e) => setCcNumber(e.target.value)} />
 					</div>
 				</div>
 			</Collapse>

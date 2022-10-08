@@ -12,7 +12,7 @@ export default function SearchButtons() {
 				<FcSearch size="1.5em" style={{ marginRight: 5 }} />
 				Search
 			</button>
-			<button className="searchButtons" onClick={searchReset}>
+			<button className="searchButtons" onClick={() => searchReset()}>
 				<FcUndo size="1.5em" style={{ marginRight: 5 }} />
 				Reset
 			</button>

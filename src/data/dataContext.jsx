@@ -7,6 +7,17 @@ import countryList from 'react-select-country-list';
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
+	const [activeTab, setActiveTab] = useState('1');
+	const [phone, setPhone] = useState('');
+	const [email, setEmail] = useState('');
+	const [fname, setFname] = useState('');
+	const [lname, setLname] = useState('');
+	const [custNumber, setCustNumber] = useState('');
+	const [ccNumber, setCcNumber] = useState('');
+
+	const tabToggle = (tab) => {
+		if (activeTab !== tab) setActiveTab(tab);
+	};
 	const [newCustBtn, setnewCustBtn] = useState(false);
 	const togglenewCustBtn = () => {
 		setnewCustBtn(true);
@@ -33,14 +44,53 @@ export const DataProvider = ({ children }) => {
 		setStateSel(value);
 	};
 	const searchReset = () => {
+		setPhone('');
+		setEmail('');
+		setFname('');
+		setLname('');
+		setCustNumber('');
+		setCcNumber('');
 		setnewCustBtn(false);
 		setProgramSelection(null);
 		setCountrySel(null);
 		setStateSel(null);
 	};
+	const searchCustomer = () => {
+		if (phone === '') {
+			customerData.find();
+		}
+	};
 
 	return (
-		<DataContext.Provider value={{ newCustBtn, togglenewCustBtn, handleProgramChange, programSelection, program, countryOptions, countrySel, stateSel, SelectUSStates, handleCountryChange, handleStateChange, searchReset }}>
+		<DataContext.Provider
+			value={{
+				activeTab,
+				tabToggle,
+				newCustBtn,
+				phone,
+				ccNumber,
+				setCcNumber,
+				custNumber,
+				setCustNumber,
+				setPhone,
+				email,
+				setEmail,
+				fname,
+				setFname,
+				lname,
+				setLname,
+				togglenewCustBtn,
+				handleProgramChange,
+				programSelection,
+				program,
+				countryOptions,
+				countrySel,
+				stateSel,
+				SelectUSStates,
+				handleCountryChange,
+				handleStateChange,
+				searchReset,
+			}}>
 			{children}
 		</DataContext.Provider>
 	);
