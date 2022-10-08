@@ -95,3 +95,86 @@
 	font-size: 14px;
 	border-radius: 6px;
 }
+/*********Customer Search Results***********/
+.resultsContainer {
+	min-width: 1280px;
+	width: 100%;
+	margin-top: 13px;
+}
+.resultsTitle {
+	width: 100%;
+	background-color: #000099;
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+	font-family: verdana, arial, helvetica;
+	padding-left: 10px;
+	height: 25px;
+	line-height: 25px;
+}
+.divider {
+	border-left: 1px solid white;
+	font-size: 12px;
+}
+.resultHeader {
+	background-color: #606060;
+	color: white;
+	font-size: 12px;
+	font-family: verdana, arial, helvetica;
+	margin-top: 3px !important;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+}
+.fix {
+	margin-bottom: -3px !important;
+}
+.expandSpacer {
+	width: 25px;
+}
+.dob {
+	width: 120px;
+}
+.phone {
+	width: 120px;
+}
+.address {
+	width: 190px;
+}
+.email {
+	width: 190px;
+}
+.lastModified {
+	width: 120px;
+}
+.action {
+	width: 100px;
+}
+.name {
+	flex-grow: 1;
+}
+.padL1 {
+	padding-left: 5px !important;
+}
+.padL {
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 11px;
+	font-weight: bold;
+}
+.padL span {
+	display: block;
+}
+.result {
+	font-size: 12px;
+	font-family: verdana, arial, helvetica;
+	margin-top: 3px !important;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	display: flex;
+}
+#table1 {
+	background-color: #c0c0c0;
+}
+#table2 {
+	background-color: #e0e0e0;
+}

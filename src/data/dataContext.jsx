@@ -16,6 +16,7 @@ export const DataProvider = ({ children }) => {
 		{ value: 'MYCRUISESITE.COM', label: 'MYCRUISESITE.COM' },
 		{ value: 'MYCRUISEPLANNER.COM', label: 'MYCRUISEPLANNER.COM' },
 		{ value: 'MYCRUISEVACATION.COM', label: 'MYCRUISEVACATION.COM' },
+		{ value: 'UNKNOWN', label: 'UNKNOWN' },
 	];
 	const handleProgramChange = (value) => {
 		setProgramSelection(value);
