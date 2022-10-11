@@ -5,30 +5,50 @@ import DataContext from '../../../data/dataContext';
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from 'react-icons/ai';
 import { BsArrowReturnRight } from 'react-icons/bs';
 
-export default function ResList({ styleColor }) {
-	const { program, programSelection, handleProgramChange } = useContext(DataContext);
+export default function ResList({ styleColor, pax }) {
+	const { program, customerData, addressData } = useContext(DataContext);
 
 	return (
-		<div className="result" id={styleColor}>
-			<div className="expandSpacer divider padL1">
-				<AiOutlinePlusSquare />
-			</div>
-			<div className="divider name padL">
-				<span>Jane Dojacat</span>
-				<span>
-					<BsArrowReturnRight />
-					mycruisesite.com
-				</span>
-			</div>
-			<div className="divider dob padL">11/15/1984</div>
-			<div className="divider phone padL">(770) 489-3648</div>
-			<div className="divider address padL">
-				<span>101 Shitshat Blvd,</span>
-				<span> Atanta, GA, 30134</span>
-			</div>
-			<div className="divider email padL">janedojacat@gmail.com</div>
-			<div className="divider lastModified padL">10/08/2022</div>
-			<div className="divider action padL">Actions</div>
+		<div>
+			{customerData.map((cust) => {
+				if (cust.id === pax) {
+					return (
+						<div key={cust.id} className="result" id={styleColor}>
+							<div className="expandSpacer divider padL1">
+								<AiOutlinePlusSquare />
+							</div>
+							<div className="divider name padL">
+								<span>
+									{cust.firstName} {cust.lastName}
+								</span>
+								<span>
+									<BsArrowReturnRight />
+									{cust.program}
+								</span>
+							</div>
+							<div className="divider dob padL">{cust.dob}</div>
+							<div className="divider phone padL">{cust.phone}</div>
+							<div className="divider address padL">
+								{addressData.map((add) => {
+									if (add.custID === pax) {
+										return (
+											<div key={add.id}>
+												<span>{add.primary.line1}</span>
+												<span>
+													{add.primary.city}, {add.primary.state}, {add.primary.zip}
+												</span>
+											</div>
+										);
+									}
+								})}
+							</div>
+							<div className="divider email padL">{cust.email}</div>
+							<div className="divider lastModified padL">10/08/2022</div>
+							<div className="divider action padL">Actions</div>
+						</div>
+					);
+				}
+			})}
 		</div>
 	);
 }

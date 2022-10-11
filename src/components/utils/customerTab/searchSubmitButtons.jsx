@@ -4,11 +4,11 @@ import DataContext from '../../../data/dataContext';
 import { FcSearch, FcUndo } from 'react-icons/fc';
 
 export default function SearchButtons() {
-	const { togglenewCustBtn, searchReset } = useContext(DataContext);
+	const { searchReset, searchCustomer } = useContext(DataContext);
 
 	return (
 		<div className="buttonContainer">
-			<button className="searchButtons" onClick={togglenewCustBtn}>
+			<button className="searchButtons" onClick={searchCustomer}>
 				<FcSearch size="1.5em" style={{ marginRight: 5 }} />
 				Search
 			</button>

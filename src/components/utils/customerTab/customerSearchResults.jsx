@@ -3,9 +3,10 @@ import { useState, useContext } from 'react';
 import { Table } from 'reactstrap';
 import DataContext from '../../../data/dataContext';
 import ResList from './searchResultList';
+import uniqid from 'uniqid';
 
 export default function SearchResults() {
-	const { program, programSelection, handleProgramChange } = useContext(DataContext);
+	const { program, programSelection, searchResultList } = useContext(DataContext);
 
 	return (
 		<div className="resultsContainer">
@@ -26,6 +27,15 @@ export default function SearchResults() {
 			</Table>
 			<ResList styleColor={'table1'} />
 			<ResList styleColor={'table2'} />
+			{searchResultList.map((item, i) => {
+				let sty;
+				if (i % 2) {
+					sty = 'table2';
+				} else {
+					sty = 'table1';
+				}
+				return <ResList key={uniqid()} styleColor={sty} pax={item} />;
+			})}
 		</div>
 	);
 }

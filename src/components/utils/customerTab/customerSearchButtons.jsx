@@ -11,7 +11,7 @@ export default function NewCustomerButtons() {
 		return (
 			<div className="customerButtons">
 				<div className="custLead searchInActive">
-					<FcDocument size="1.5em" style={{ opacity: '30%' }} /> Customer Leader
+					<FcDocument size="1.5em" style={{ opacity: '30%' }} /> Customer Lead
 				</div>
 				<div className="custNew searchInActive">
 					<FcBusinessman size="1.5em" style={{ opacity: '30%' }} /> New Customer
@@ -22,7 +22,7 @@ export default function NewCustomerButtons() {
 		return (
 			<div className="customerButtons">
 				<button className="custBtn searchActive">
-					<FcDocument size="1.5em" /> Customer Leader
+					<FcDocument size="1.5em" /> Customer Lead
 				</button>
 				<button className="custBtn searchActive">
 					<FcBusinessman size="1.5em" /> New Customer

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useMemo } from 'react';
-import customerData from './customerData';
+import { customerData } from './customerData';
+import { addressData } from './customerAddress';
 import uniqid from 'uniqid';
 import { SelectUSStates } from './usStates';
 import countryList from 'react-select-country-list';
@@ -14,6 +15,7 @@ export const DataProvider = ({ children }) => {
 	const [lname, setLname] = useState('');
 	const [custNumber, setCustNumber] = useState('');
 	const [ccNumber, setCcNumber] = useState('');
+	const [searchResultList, setSearchResultList] = useState(['123456']);
 
 	const tabToggle = (tab) => {
 		if (activeTab !== tab) setActiveTab(tab);
@@ -56,8 +58,30 @@ export const DataProvider = ({ children }) => {
 		setStateSel(null);
 	};
 	const searchCustomer = () => {
-		if (phone === '') {
-			customerData.find();
+		togglenewCustBtn();
+
+		const fL = fname.length;
+		const LL = lname.length;
+
+		if (programSelection !== null) {
+			if (phone !== '') {
+				//customerData.find();
+				if (email !== '') {
+					console.log(email, phone);
+				} else {
+					console.log(phone);
+				}
+			} else if (email !== '') {
+				console.log(email);
+			} else if (lname !== '') {
+				if (fL >= 2 && LL >= 2) {
+					console.log(lname, ' + ', fname);
+				} else {
+					alert('last name and first name must be at least 2 letters!');
+				}
+			}
+		} else {
+			alert('Please select a program!');
 		}
 	};
 
@@ -90,6 +114,10 @@ export const DataProvider = ({ children }) => {
 				handleCountryChange,
 				handleStateChange,
 				searchReset,
+				searchCustomer,
+				searchResultList,
+				customerData,
+				addressData,
 			}}>
 			{children}
 		</DataContext.Provider>
