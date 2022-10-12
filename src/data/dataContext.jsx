@@ -15,7 +15,7 @@ export const DataProvider = ({ children }) => {
 	const [lname, setLname] = useState('');
 	const [custNumber, setCustNumber] = useState('');
 	const [ccNumber, setCcNumber] = useState('');
-	const [searchResultList, setSearchResultList] = useState(['123456']);
+	const [searchResultList, setSearchResultList] = useState(['123456', '234523', '323456']);
 
 	const tabToggle = (tab) => {
 		if (activeTab !== tab) setActiveTab(tab);
@@ -52,6 +52,7 @@ export const DataProvider = ({ children }) => {
 		setLname('');
 		setCustNumber('');
 		setCcNumber('');
+		setSearchResultList([]);
 		setnewCustBtn(false);
 		setProgramSelection(null);
 		setCountrySel(null);
@@ -59,30 +60,92 @@ export const DataProvider = ({ children }) => {
 	};
 	const searchCustomer = () => {
 		togglenewCustBtn();
+		setSearchResultList([]);
 
 		const fL = fname.length;
 		const LL = lname.length;
+		let tempArray = [];
 
 		if (programSelection !== null) {
 			if (phone !== '') {
-				//customerData.find();
-				if (email !== '') {
-					console.log(email, phone);
-				} else {
-					console.log(phone);
+				if (email === '' && fname === '' && lname === '') {
+					customerData.map((item, i) => {
+						if (programSelection.value === 'UNKNOWN') {
+							if (item.phone === phone) {
+								tempArray.push(item.id);
+								console.log(tempArray);
+							}
+						} else if (item.program === programSelection.value && item.phone === phone) {
+							tempArray.push(item.id);
+						}
+					});
+				} else if (email !== '' && fname === '' && lname === '') {
+					customerData.map((item, i) => {
+						if (programSelection.value === 'UNKNOWN') {
+							if (item.phone === phone && item.email === email) {
+								tempArray.push(item.id);
+								console.log(tempArray);
+							}
+						} else if (item.program === programSelection.value && item.phone === phone && item.email === email) {
+							tempArray.push(item.id);
+						}
+					});
+				} else if (email !== '' && fname !== '' && lname !== '') {
+					if (fL < 2 || LL < 2) {
+						alert('last name and first name must be at least 2 letters!');
+					}
+					customerData.map((item, i) => {
+						if (programSelection.value === 'UNKNOWN') {
+							console.log(item.firstName.includes(fname));
+							if (item.phone === phone && item.email === email && item.firstName.includes(fname) && item.lastName.includes(lname)) {
+								tempArray.push(item.id);
+								console.log(tempArray);
+							}
+						} else if (item.program === programSelection.value && item.phone === phone && item.email === email) {
+							tempArray.push(item.id);
+						}
+					});
 				}
 			} else if (email !== '') {
-				console.log(email);
-			} else if (lname !== '') {
+				if (fname === '' && lname === '') {
+					customerData.map((item, i) => {
+						if (programSelection.value === 'UNKNOWN') {
+							if (item.email === email) {
+								tempArray.push(item.id);
+								console.log(tempArray);
+							}
+						} else if (item.program === programSelection.value && item.email === email) {
+							tempArray.push(item.id);
+						}
+					});
+				} else if (email !== '' && fname !== '' && lname !== '') {
+					if (fL < 2 || LL < 2) {
+						alert('last name and first name must be at least 2 letters!');
+					}
+					customerData.map((item, i) => {
+						if (programSelection.value === 'UNKNOWN') {
+							if (item.phone === phone && item.email === email) {
+								tempArray.push(item.id);
+								console.log(tempArray);
+							}
+						} else if (item.program === programSelection.value && item.phone === phone && item.email === email) {
+							tempArray.push(item.id);
+						}
+					});
+				}
+			} else if (lname !== '' || fname !== '') {
 				if (fL >= 2 && LL >= 2) {
 					console.log(lname, ' + ', fname);
 				} else {
 					alert('last name and first name must be at least 2 letters!');
 				}
+			} else {
+				alert('field empty');
 			}
 		} else {
 			alert('Please select a program!');
 		}
+		setSearchResultList(tempArray);
 	};
 
 	return (

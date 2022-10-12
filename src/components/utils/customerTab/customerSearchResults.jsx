@@ -25,8 +25,6 @@ export default function SearchResults() {
 					</tr>
 				</thead>
 			</Table>
-			<ResList styleColor={'table1'} />
-			<ResList styleColor={'table2'} />
 			{searchResultList.map((item, i) => {
 				let sty;
 				if (i % 2) {
