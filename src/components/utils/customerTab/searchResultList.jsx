@@ -8,6 +8,19 @@ import { BsArrowReturnRight } from 'react-icons/bs';
 export default function ResList({ styleColor, pax }) {
 	const { program, customerData, addressData } = useContext(DataContext);
 
+	const PhoneNum = (number) => {
+		const num = number.number;
+
+		const areaCode = num[0] + num[1] + num[2];
+		const code = num[3] + num[4] + num[5];
+		const sec = num[6] + num[7] + num[8] + num[9];
+		return (
+			<>
+				({areaCode}) {code}-{sec}
+			</>
+		);
+	};
+
 	return (
 		<div>
 			{customerData.map((cust) => {
@@ -27,7 +40,9 @@ export default function ResList({ styleColor, pax }) {
 								</span>
 							</div>
 							<div className="divider dob padL">{cust.dob}</div>
-							<div className="divider phone padL">{cust.phone}</div>
+							<div className="divider phone padL">
+								<PhoneNum number={cust.phone} />
+							</div>
 							<div className="divider address padL">
 								{addressData.map((add) => {
 									if (add.custID === pax) {

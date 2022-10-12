@@ -64,9 +64,13 @@ export const DataProvider = ({ children }) => {
 
 		const fL = fname.length;
 		const LL = lname.length;
+		const fnameLower = fname.toLowerCase();
+		const lnameLower = lname.toLowerCase();
+		const emLower = email.toLowerCase();
 		let tempArray = [];
-
+		console.log(emLower);
 		if (programSelection !== null) {
+			//*************Search by Phone with email and name***************
 			if (phone !== '') {
 				if (email === '' && fname === '' && lname === '') {
 					customerData.map((item, i) => {
@@ -81,36 +85,40 @@ export const DataProvider = ({ children }) => {
 					});
 				} else if (email !== '' && fname === '' && lname === '') {
 					customerData.map((item, i) => {
+						const iem = item.email.toLowerCase();
 						if (programSelection.value === 'UNKNOWN') {
-							if (item.phone === phone && item.email === email) {
+							if (item.phone === phone && iem === emLower) {
 								tempArray.push(item.id);
 								console.log(tempArray);
 							}
-						} else if (item.program === programSelection.value && item.phone === phone && item.email === email) {
+						} else if (item.program === programSelection.value && item.phone === phone && iem === emLower) {
 							tempArray.push(item.id);
 						}
 					});
-				} else if (email !== '' && fname !== '' && lname !== '') {
+				} else if (fname !== '' && lname !== '') {
 					if (fL < 2 || LL < 2) {
 						alert('last name and first name must be at least 2 letters!');
 					}
 					customerData.map((item, i) => {
+						const ifn = item.firstName.toLowerCase();
+						const iln = item.lastName.toLowerCase();
+
 						if (programSelection.value === 'UNKNOWN') {
-							console.log(item.firstName.includes(fname));
-							if (item.phone === phone && item.email === email && item.firstName.includes(fname) && item.lastName.includes(lname)) {
+							if (item.phone === phone && ifn.includes(fnameLower) && iln.includes(lnameLower)) {
 								tempArray.push(item.id);
 								console.log(tempArray);
 							}
-						} else if (item.program === programSelection.value && item.phone === phone && item.email === email) {
+						} else if (item.program === programSelection.value && item.phone === phone && ifn.includes(fnameLower) && iln.includes(lnameLower)) {
 							tempArray.push(item.id);
 						}
 					});
 				}
+				//*************Search by Email with name*****************
 			} else if (email !== '') {
 				if (fname === '' && lname === '') {
 					customerData.map((item, i) => {
 						if (programSelection.value === 'UNKNOWN') {
-							if (item.email === email) {
+							if (emLower === email.toLowerCase()) {
 								tempArray.push(item.id);
 								console.log(tempArray);
 							}
@@ -118,30 +126,49 @@ export const DataProvider = ({ children }) => {
 							tempArray.push(item.id);
 						}
 					});
-				} else if (email !== '' && fname !== '' && lname !== '') {
+				} else if (fname !== '' && lname !== '') {
 					if (fL < 2 || LL < 2) {
 						alert('last name and first name must be at least 2 letters!');
 					}
 					customerData.map((item, i) => {
+						const ifn = item.firstName.toLowerCase();
+						const iln = item.lastName.toLowerCase();
+						const iem = item.email.toLowerCase();
+
 						if (programSelection.value === 'UNKNOWN') {
-							if (item.phone === phone && item.email === email) {
+							if (emLower === iem && ifn.includes(fnameLower) && iln.includes(lnameLower)) {
 								tempArray.push(item.id);
 								console.log(tempArray);
 							}
-						} else if (item.program === programSelection.value && item.phone === phone && item.email === email) {
+						} else if (item.program === programSelection.value && emLower === iem && ifn.includes(fnameLower) && iln.includes(lnameLower)) {
 							tempArray.push(item.id);
 						}
 					});
 				}
+				//************ Search by name only***************
 			} else if (lname !== '' || fname !== '') {
 				if (fL >= 2 && LL >= 2) {
-					console.log(lname, ' + ', fname);
+					customerData.map((item, i) => {
+						const ifn = item.firstName.toLowerCase();
+						const iln = item.lastName.toLowerCase();
+
+						if (programSelection.value === 'UNKNOWN') {
+							//****************
+							if (ifn.includes(fnameLower) && iln.includes(lnameLower)) {
+								tempArray.push(item.id);
+							}
+						} else if (item.program === programSelection.value && ifn.includes(fnameLower) && iln.includes(lnameLower)) {
+							tempArray.push(item.id);
+						}
+					});
 				} else {
 					alert('last name and first name must be at least 2 letters!');
 				}
 			} else {
-				alert('field empty');
+				alert('Search field empty!');
 			}
+
+			//**************Program Selection is needed for search***************
 		} else {
 			alert('Please select a program!');
 		}
