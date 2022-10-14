@@ -22,7 +22,7 @@ export const customerData = [
 		firstName: "John",
 		lastName: "Doe",
 		middleName: "Leon",
-		phone: "3216549878",
+		phone: "3216549877",
 		dob: "10/12/1984",
 		prefix: "Mr",
 		suffix: "",

@@ -68,11 +68,43 @@ export const DataProvider = ({ children }) => {
 
 		const fL = fname.length;
 		const LL = lname.length;
-		const fnameLower = fname.toLowerCase();
-		const lnameLower = lname.toLowerCase();
-		const emLower = email.toLowerCase();
+		const fnL = fname.toLowerCase();
+		const lnL = lname.toLowerCase();
+		const emL = email.toLowerCase();
 		let tempArray = [];
 
+		if (fname !== "" || lname !== "") {
+			if (fL < 2 || LL < 2) {
+				alert("last name and first name must be at least 2 letters!");
+			}
+		}
+		if (custNumber !== "") {
+			customerData.map((item, i) => {
+				if (item.id === custNumber) {
+					return tempArray.push(item.id);
+				}
+			});
+		} else if (programSelection !== null) {
+			customerData.map((item, i) => {
+				const ifn = item.firstName.toLowerCase();
+				const iln = item.lastName.toLowerCase();
+				const iem = item.email.toLowerCase();
+
+				if (programSelection.value === "UNKNOWN") {
+					let array1 = customerData.map((item, i) => {
+						if (item.phone === phone) {
+							return item.id;
+						} else {
+							return null;
+						}
+					});
+					tempArray = array1;
+				} else if (item.program === programSelection.value) {
+					if (item.id === custNumber) return tempArray.push(item.id);
+				}
+			});
+		}
+		/*
 		if (programSelection !== null) {
 			if (custNumber !== "") {
 				customerData.map((item, i) => {
@@ -362,7 +394,7 @@ export const DataProvider = ({ children }) => {
 			//**************Program Selection is needed for search***************
 		} else {
 			alert("Please select a program!");
-		}
+		}*/
 		setSearchResultList(tempArray);
 	};
 
