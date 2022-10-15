@@ -131,6 +131,8 @@ export const DataProvider = ({ children }) => {
 				} else {
 					tempArray = search(customerData, filterParams);
 				}
+			} else {
+				tempArray = search(customerData, filterParams);
 			}
 		} else {
 			alert("Program must be selected!");
