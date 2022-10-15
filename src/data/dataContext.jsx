@@ -4,6 +4,8 @@ import { addressData } from "./customerAddress";
 import uniqid from "uniqid";
 import { SelectUSStates } from "./usStates";
 import countryList from "react-select-country-list";
+import filter from "lodash/fp/filter";
+import curry from "lodash/fp/curry";
 
 const DataContext = createContext({});
 
@@ -62,7 +64,20 @@ export const DataProvider = ({ children }) => {
 		setCountrySel(null);
 		setStateSel(null);
 	};
+	//1. Create generic filter function for your object schema
+	const eqStrictFirstName = (name) => filter((x) => x.firstName === name);
+	const hasPhone = (num) => filter((x) => x.phone.includes(num));
+
+	//2. Make a generic function to combine those functions
+	//according to your business logic
+	const and = curry((predicates, item) => {
+		return predicates.reduce(
+			(hasPassedSoFar, predicate) => hasPassedSoFar && predicate(item),
+			true
+		);
+	});
 	const searchCustomer = () => {
+		console.log("results ", searchResultList);
 		togglenewCustBtn();
 		setSearchResultList([]);
 
@@ -85,7 +100,15 @@ export const DataProvider = ({ children }) => {
 				}
 			});
 		} else if (programSelection !== null) {
-			customerData.map((item, i) => {
+			tempArray = and(
+				[eqStrictFirstName(fnL), hasPhone(phone)],
+				customerData
+			);
+			console.log(
+				and([eqStrictFirstName(fnL), hasPhone(phone)], customerData)
+			);
+			console.log("tempArray ", tempArray);
+			/*customerData.map((item, i) => {
 				const ifn = item.firstName.toLowerCase();
 				const iln = item.lastName.toLowerCase();
 				const iem = item.email.toLowerCase();
@@ -102,7 +125,7 @@ export const DataProvider = ({ children }) => {
 				} else if (item.program === programSelection.value) {
 					if (item.id === custNumber) return tempArray.push(item.id);
 				}
-			});
+			});*/
 		}
 		/*
 		if (programSelection !== null) {

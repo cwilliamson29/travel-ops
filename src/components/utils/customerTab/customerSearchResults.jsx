@@ -1,12 +1,13 @@
-import '../../../assets/css/customer.css';
-import { useState, useContext } from 'react';
-import { Table } from 'reactstrap';
-import DataContext from '../../../data/dataContext';
-import ResList from './searchResultList';
-import uniqid from 'uniqid';
+import "../../../assets/css/customer.css";
+import { useState, useContext } from "react";
+import { Table } from "reactstrap";
+import DataContext from "../../../data/dataContext";
+import ResList from "./searchResultList";
+import uniqid from "uniqid";
 
 export default function SearchResults() {
-	const { program, programSelection, searchResultList } = useContext(DataContext);
+	const { program, programSelection, searchResultList } =
+		useContext(DataContext);
 
 	return (
 		<div className="resultsContainer">
@@ -28,11 +29,13 @@ export default function SearchResults() {
 			{searchResultList.map((item, i) => {
 				let sty;
 				if (i % 2) {
-					sty = 'table2';
+					sty = "table2";
 				} else {
-					sty = 'table1';
+					sty = "table1";
 				}
-				return <ResList key={uniqid()} styleColor={sty} pax={item} />;
+				return (
+					<ResList key={uniqid()} styleColor={sty} pax={item.id} />
+				);
 			})}
 		</div>
 	);
