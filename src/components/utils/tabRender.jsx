@@ -1,16 +1,19 @@
-import React from 'react';
-import { NavItem, NavLink } from 'reactstrap';
-import classnames from 'classnames';
+import React from "react";
+import { NavItem, NavLink } from "reactstrap";
+import classnames from "classnames";
 
 export default function TabRender(props) {
 	return (
-		<NavItem>
+		<NavItem className={props.sty}>
 			<NavLink
 				id="navLink"
-				className={classnames({ active: props.activeTab === props.num })}
+				className={classnames({
+					active: props.activeTab === props.num,
+				})}
 				onClick={() => {
 					props.toggle(props.num);
-				}}>
+				}}
+			>
 				{props.name}
 			</NavLink>
 		</NavItem>
