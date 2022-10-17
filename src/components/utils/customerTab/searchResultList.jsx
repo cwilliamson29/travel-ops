@@ -4,7 +4,7 @@ import { Table, Collapse, Nav, TabContent } from "reactstrap";
 import DataContext from "../../../data/dataContext";
 import { AiOutlinePlusSquare, AiOutlineMinusSquare } from "react-icons/ai";
 import { BsArrowReturnRight } from "react-icons/bs";
-import TabRender from "../tabRender";
+import SearchTabRender from "./searchResultTabs/searchTabRender";
 import InqTab from "./searchResultTabs/inqTab";
 import uniqid from "uniqid";
 
@@ -43,7 +43,7 @@ export default function ResList({ styleColor, pax }) {
 			{customerData.map((cust) => {
 				if (cust.id === pax) {
 					return (
-						<div id={styleColor}>
+						<div key={uniqid()} id={styleColor}>
 							<div
 								key={cust.id}
 								className="result"
@@ -103,7 +103,7 @@ export default function ResList({ styleColor, pax }) {
 								<div className="linksBar divider lkSpace">
 									<Nav tabs>
 										{tabData.map((item, i) => (
-											<TabRender
+											<SearchTabRender
 												key={uniqid()}
 												num={item.num}
 												name={item.name}
@@ -114,7 +114,10 @@ export default function ResList({ styleColor, pax }) {
 										))}
 									</Nav>
 								</div>
-								<TabContent activeTab={activeTab}>
+								<TabContent
+									className="divider tabPaneSpace"
+									activeTab={activeTab}
+								>
 									<InqTab />
 								</TabContent>
 							</Collapse>

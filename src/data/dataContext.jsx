@@ -59,7 +59,6 @@ export const DataProvider = ({ children }) => {
 	const [stateSel, setStateSel] = useState(null);
 
 	const handleCountryChange = (value) => {
-		//console.log(value.value);
 		if (value === null) {
 			setCountry("");
 		} else {
@@ -100,7 +99,6 @@ export const DataProvider = ({ children }) => {
 	};
 
 	const search = (objArray, filterParams) => {
-		console.log(filterParams);
 		return objArray.filter((obj) => {
 			return Object.keys(filterParams).every((key) => {
 				return obj[key]
